@@ -1,0 +1,33 @@
+# -------------------------------------------------------------
+# requirements.txt  – Computation-Graphs companion repo
+# -------------------------------------------------------------
+# • Works out-of-the-box on macOS, Windows, Linux (CPU)
+# • GPU users: uncomment the CUDA wheel lines below
+# • Apple-silicon users MUST use a native arm64 Python;
+#   x86/Rosetta interpreters will fail because jaxlib wheels
+#   are built with AVX.  See README for details.
+# -------------------------------------------------------------
+
+# --- PyTorch --------------------------------------------------
+# CPU wheel (default for everyone)
+torch>=2.2.2,<2.3                    # TORCH_CPU ✅
+
+# ------------  CUDA users (Linux)  ------------
+# Comment the line above and uncomment ONE wheel:
+#   CUDA 12:  torch==2.2.2+cu121 \
+#             -f https://download.pytorch.org/whl/cu121/torch_stable.html
+#   CUDA 11:  torch==2.2.2+cu118 \
+#             -f https://download.pytorch.org/whl/cu118/torch_stable.html
+# ----------------------------------------------
+
+# --- JAX ------------------------------------------------------
+jax>=0.4.27
+jaxlib>=0.4.27          # auto-selects CPU wheel on arm64/x86
+
+# Apple-silicon note -------------------------------------------------
+# Using an x86/Rosetta Python?  JAX will crash with an AVX error.
+# Fix: install a native arm64 Python OR build jaxlib from source.
+# -------------------------------------------------------------------
+
+# --- NumPy (pinned below 2.0 for PyTorch ABI) ----------------
+numpy>=1.25,<2
